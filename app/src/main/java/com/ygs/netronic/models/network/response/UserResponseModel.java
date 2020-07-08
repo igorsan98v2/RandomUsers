@@ -66,9 +66,10 @@ public class UserResponseModel {
             User instance = new User();
             instance.age = dob.age;
             instance.firstName = name.first;
-            instance.secondName = name.last;
+            instance.lastName = name.last;
             instance.title = name.title;
             instance.gender = gender;
+            instance.email = email;
             return instance;
         }
     }

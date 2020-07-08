@@ -24,7 +24,7 @@ public abstract class UserDao extends EntityDao<User> {
     @Query("SELECT " +
             "User.id as id, " +
             "User.firstName as firstName, " +
-            "User.secondName as secondName, " +
+            "User.lastName as lastName, " +
             "PictureUrl.thumbnail as thumbnailUrl " +
             "FROM User " +
             "LEFT JOIN PictureUrl " +
@@ -33,13 +33,16 @@ public abstract class UserDao extends EntityDao<User> {
 
     @Query("SELECT " +
             "User.firstName as firstName, " +
-            "User.secondName as secondName, " +
+            "User.lastName as lastName, " +
             "User.title as title, " +
             "User.gender as gender, " +
             "User.age as age, " +
+            "User.email as email, " +
             "PictureUrl.large as picture, " +
             "Location.country as country, " +
-            "Location.city as city " +
+            "Location.city as city, " +
+            "Location.streetName as streetName, " +
+            "Location.streetName as streetNumber " +
             "FROM User " +
             "LEFT JOIN PictureUrl " +
             "ON User.id = PictureUrl.userId " +

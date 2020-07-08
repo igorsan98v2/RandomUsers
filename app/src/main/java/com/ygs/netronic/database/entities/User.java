@@ -11,16 +11,17 @@ public class User implements Local {
     @PrimaryKey(autoGenerate = true)
     public long id;
     public String firstName;
-    public String secondName;
+    public String lastName;
     public String title;
     public String gender;
+    public String email;
     public int age;
 
 
     @Override
     public int hashCode() {
         return firstName.hashCode()
-                + secondName.hashCode()
+                + lastName.hashCode()
                 + gender.hashCode()
                 + Integer.hashCode(age);
     }

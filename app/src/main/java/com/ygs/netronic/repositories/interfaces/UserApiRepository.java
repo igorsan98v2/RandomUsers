@@ -4,6 +4,6 @@ import com.google.gson.JsonElement;
 
 import retrofit2.Call;
 
-public interface RandomUserRepository {
+public interface UserApiRepository {
     Call<JsonElement> getUsers(int results);
 }

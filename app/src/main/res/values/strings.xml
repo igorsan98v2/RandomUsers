@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Netronic</string>
+    <string name="app_name">Netronic test task</string>
+    <string name="country">Country: </string>
+    <string name="city">City: </string>
+    <string name="street">Street: </string>
+    <string name="gender">Gender: </string>
+    <string name="age">Age: </string>
+    <string name="email">E-mail: </string>
 </resources>
