@@ -5,4 +5,5 @@ public @interface RandomUserAnnotation {
     int CONNECT_TIMEOUT = 5;
     String API_URL = "https://randomuser.me/api/";
     int DEFAULT_UPLOAD_ARR_SIZE = 20;
+    String DATABASE_NANE = "somedb.db";
 }

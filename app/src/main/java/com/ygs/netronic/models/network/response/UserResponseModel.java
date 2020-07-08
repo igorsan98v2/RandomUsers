@@ -1,6 +1,10 @@
 package com.ygs.netronic.models.network.response;
 
 import com.google.gson.annotations.SerializedName;
+import com.ygs.netronic.database.entities.PictureUrl;
+import com.ygs.netronic.database.entities.User;
+import com.ygs.netronic.interfaces.Local;
+import com.ygs.netronic.interfaces.Remote;
 
 import java.util.List;
 
@@ -21,7 +25,7 @@ public class UserResponseModel {
         return false;
     }
 
-    class UserData {
+    public static class UserData implements Remote {
         @SerializedName("gender")
         public String gender;
 
@@ -57,6 +61,16 @@ public class UserResponseModel {
             return false;
         }
 
+        @Override
+        public Local mapToLocal() {
+            User instance = new User();
+            instance.age = dob.age;
+            instance.firstName = name.first;
+            instance.secondName = name.last;
+            instance.title = name.title;
+            instance.gender = gender;
+            return instance;
+        }
     }
 
     public class Name {
@@ -81,7 +95,7 @@ public class UserResponseModel {
         public int age;
     }
 
-    public class Location {
+    public class Location implements Remote{
 
         @SerializedName("street")
         public Street street;
@@ -98,6 +112,16 @@ public class UserResponseModel {
         @SerializedName("timezone")
         public Timezone timezone;
 
+        @Override
+        public Local mapToLocal() {
+            com.ygs.netronic.database.entities.Location instance = new com.ygs.netronic.database.entities.Location();
+            instance.city = city;
+            instance.country = country;
+            instance.state = state;
+            instance.streetName = street.name;
+            instance.streetNumber = street.number;
+            return instance;
+        }
     }
 
     public class Street {
@@ -123,7 +147,7 @@ public class UserResponseModel {
 
     }
 
-    public class Picture {
+    public class Picture implements Remote {
         @SerializedName("large")
         public String large;
         @SerializedName("medium")
@@ -131,6 +155,14 @@ public class UserResponseModel {
         @SerializedName("thumbnail")
         public String thumbnail;
 
+        @Override
+        public Local mapToLocal() {
+            PictureUrl instance = new PictureUrl();
+            instance.large = large;
+            instance.medium = medium;
+            instance.thumbnail = thumbnail;
+            return instance;
+        }
     }
 
 
