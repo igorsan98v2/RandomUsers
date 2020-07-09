@@ -8,4 +8,5 @@ import androidx.lifecycle.LiveData;
 
 public interface RandomUsersRepository {
     LiveData<List<UserRowModel>> getUsersList(int usersCount);
+    LiveData<List<UserRowModel>> getOfflineUsersList();
 }

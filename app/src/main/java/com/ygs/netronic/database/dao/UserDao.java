@@ -47,8 +47,9 @@ public abstract class UserDao extends EntityDao<User> {
             "LEFT JOIN PictureUrl " +
             "ON User.id = PictureUrl.userId " +
             "LEFT JOIN Location " +
-            "ON User.id = Location.userId")
-    public abstract Single<List<UserDetailsSample>> selectDetails();
+            "ON User.id = Location.userId " +
+            "WHERE User.id = :userId")
+    public abstract Single<UserDetailsSample> selectDetailsSampleByUserId(long userId);
 
     @Query("DELETE FROM User")
     @Override

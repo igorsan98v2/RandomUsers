@@ -6,6 +6,9 @@
         <variable
             name="user"
             type="com.ygs.netronic.models.ui.UserDetailsModel" />
+        <variable
+            name="viewModel"
+            type="com.ygs.netronic.viewmodels.UserDetailsFragmentViewModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -72,7 +75,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="fill"
             android:background="@android:color/white"
-            android:visibility="gone">
+            android:visibility="@{viewModel.loading}">
 
             <ProgressBar
                 style="?android:attr/progressBarStyleLarge"

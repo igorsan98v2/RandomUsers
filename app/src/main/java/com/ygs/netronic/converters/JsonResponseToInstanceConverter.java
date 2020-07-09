@@ -25,20 +25,5 @@ public class JsonResponseToInstanceConverter {
         return instance;
     }
 
-    @Nullable
-    public static <T> List<T> convertToListInstance(@NonNull JsonArray jsonArray,
-                                                    @NonNull Class<T> clazz) {
-        try {
-            List<T> list = new ArrayList<>();
-            Gson gson = new Gson();
-            for (JsonElement jsonObject : jsonArray) {
-                list.add(gson.fromJson(jsonObject, clazz));
-            }
-            return list;
-        } catch (JsonSyntaxException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
 }

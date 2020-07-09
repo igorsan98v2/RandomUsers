@@ -11,6 +11,9 @@ import com.ygs.netronic.annotations.GeneralString;
 import com.ygs.netronic.databinding.FragmentUserDetailsBinding;
 import com.ygs.netronic.models.ui.LoadingView;
 import com.ygs.netronic.models.ui.UserDetailsModel;
+import com.ygs.netronic.repositories.impl.UserDetailsRepositoryImpl;
+import com.ygs.netronic.repositories.interfaces.UserDetailsRepository;
+import com.ygs.netronic.viewmodels.UserDetailsFragmentViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,11 +23,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class UserDetailsFragment extends Fragment implements LoadingView {
+public class UserDetailsFragment extends Fragment {
     private long mUserId;
     private Unbinder mUnbinder;
     private FragmentUserDetailsBinding mBinding;
-
+    private UserDetailsRepository mRepository = UserDetailsRepositoryImpl.getInstance();
+    private UserDetailsFragmentViewModel mViewModel;
     @BindView(R.id.layout_progress)
     FrameLayout mLayoutProgress;
 
@@ -48,6 +52,8 @@ public class UserDetailsFragment extends Fragment implements LoadingView {
         View view = mBinding.getRoot();
         mUnbinder = ButterKnife.bind(this, view);
 
+        mViewModel = new UserDetailsFragmentViewModel(mRepository);
+        mBinding.setViewModel(mViewModel);
         //calls new list of random users
         return view;
     }
@@ -64,6 +70,10 @@ public class UserDetailsFragment extends Fragment implements LoadingView {
     @Override
     public void onResume() {
         super.onResume();
+        mViewModel.getDetailsById(mUserId).observe(this, (details -> {
+            mBinding.setUser(details);
+            mViewModel.loading.set(ViewGroup.GONE);
+        }));
 
     }
 
@@ -82,30 +92,6 @@ public class UserDetailsFragment extends Fragment implements LoadingView {
         args.putLong(GeneralString.EXTRA_USER_ID, mUserId);
     }
 
-
-    @Override
-    public void onLoadingBegin() {
-        if (getActivity() != null) {
-            getActivity().runOnUiThread(() -> {
-                if (mLayoutProgress != null) {
-                    mLayoutProgress.setVisibility(View.VISIBLE);
-                }
-            });
-        }
-
-    }
-
-    @Override
-    public void onLoadingEnd() {
-        if (getActivity() != null) {
-            getActivity().runOnUiThread(() -> {
-                if (mLayoutProgress != null) {
-                    mLayoutProgress.setVisibility(View.GONE);
-                }
-            });
-        }
-
-    }
 
     public static UserDetailsFragment createInstance(long userId) {
         Bundle args = new Bundle();

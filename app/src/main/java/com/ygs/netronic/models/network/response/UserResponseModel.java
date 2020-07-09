@@ -3,6 +3,7 @@ package com.ygs.netronic.models.network.response;
 import com.google.gson.annotations.SerializedName;
 import com.ygs.netronic.database.entities.PictureUrl;
 import com.ygs.netronic.database.entities.User;
+import com.ygs.netronic.interfaces.Foreign;
 import com.ygs.netronic.interfaces.Local;
 import com.ygs.netronic.interfaces.Remote;
 
@@ -25,7 +26,7 @@ public class UserResponseModel {
         return false;
     }
 
-    public static class UserData implements Remote {
+    public class UserData implements Remote {
         @SerializedName("gender")
         public String gender;
 
@@ -55,7 +56,7 @@ public class UserResponseModel {
 
         @Override
         public boolean equals(@Nullable Object obj) {
-            if(obj instanceof UserData){
+            if (obj instanceof UserData) {
                 return hashCode() == obj.hashCode();
             }
             return false;
@@ -96,7 +97,7 @@ public class UserResponseModel {
         public int age;
     }
 
-    public class Location implements Remote{
+    public class Location implements Remote, Foreign {
 
         @SerializedName("street")
         public Street street;
@@ -123,6 +124,15 @@ public class UserResponseModel {
             instance.streetNumber = street.number;
             return instance;
         }
+
+
+        @Override
+        public void appendToLocalList(long foreignKeyId, List list) {
+            com.ygs.netronic.database.entities.Location instance
+                    = (com.ygs.netronic.database.entities.Location) mapToLocal();
+            instance.userId = foreignKeyId;
+            list.add(instance);
+        }
     }
 
     public class Street {
@@ -148,7 +158,7 @@ public class UserResponseModel {
 
     }
 
-    public class Picture implements Remote {
+    public class Picture implements Remote, Foreign {
         @SerializedName("large")
         public String large;
         @SerializedName("medium")
@@ -163,6 +173,15 @@ public class UserResponseModel {
             instance.medium = medium;
             instance.thumbnail = thumbnail;
             return instance;
+        }
+
+
+        @Override
+        public void appendToLocalList(long foreignKeyId, List list) {
+            PictureUrl pictureUrl = (PictureUrl) mapToLocal();
+            pictureUrl.userId = foreignKeyId;
+            list.add(pictureUrl);
+
         }
     }
 
