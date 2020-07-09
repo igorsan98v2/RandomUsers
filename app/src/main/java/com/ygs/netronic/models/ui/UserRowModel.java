@@ -1,6 +1,7 @@
 package com.ygs.netronic.models.ui;
 
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -41,7 +42,7 @@ public class UserRowModel extends BaseObservable {
 
     @BindingAdapter("android:src")
     public static void imageLoader(ImageView imageView, String url) {
-        Picasso.get().load(url).placeholder(R.drawable.unloaded_image).centerInside().into(imageView);
+        Picasso.get().load(url).placeholder(R.drawable.unloaded_image).fit().into(imageView);
     }
 
     public static class Builder {

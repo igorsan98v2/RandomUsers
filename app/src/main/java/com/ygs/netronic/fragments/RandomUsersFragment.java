@@ -141,7 +141,6 @@ public class RandomUsersFragment extends Fragment implements OnClickListener<Use
         if (getContext() != null) {
 
             Intent intent = new Intent(getContext(), UserDetailsActivity.class);
-
             intent.putExtra(GeneralString.EXTRA_USER_ID, model.getUserId());
             startActivity(intent);
         }

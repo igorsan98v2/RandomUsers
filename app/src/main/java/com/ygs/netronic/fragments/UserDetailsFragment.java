@@ -9,8 +9,7 @@ import android.widget.FrameLayout;
 import com.ygs.netronic.R;
 import com.ygs.netronic.annotations.GeneralString;
 import com.ygs.netronic.databinding.FragmentUserDetailsBinding;
-import com.ygs.netronic.models.ui.LoadingView;
-import com.ygs.netronic.models.ui.UserDetailsModel;
+import com.ygs.netronic.interfaces.Restorable;
 import com.ygs.netronic.repositories.impl.UserDetailsRepositoryImpl;
 import com.ygs.netronic.repositories.interfaces.UserDetailsRepository;
 import com.ygs.netronic.viewmodels.UserDetailsFragmentViewModel;
@@ -23,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class UserDetailsFragment extends Fragment {
+public class UserDetailsFragment extends Fragment implements Restorable {
     private long mUserId;
     private Unbinder mUnbinder;
     private FragmentUserDetailsBinding mBinding;
@@ -35,7 +34,7 @@ public class UserDetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        enterDataToFields(savedInstanceState);
+        restoreState(savedInstanceState);
     }
 
 
@@ -83,11 +82,21 @@ public class UserDetailsFragment extends Fragment {
         enterDataToArgs(outState);
     }
 
+    private void restoreState(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            savedInstanceState = getArguments();
+        }
+        if (savedInstanceState != null) {
+            enterDataToFields(savedInstanceState);
+        }
+    }
 
+    @Override
     public void enterDataToFields(@NonNull Bundle args) {
         mUserId = args.getLong(GeneralString.EXTRA_USER_ID);
     }
 
+    @Override
     public void enterDataToArgs(@NonNull Bundle args) {
         args.putLong(GeneralString.EXTRA_USER_ID, mUserId);
     }

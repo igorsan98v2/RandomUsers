@@ -6,6 +6,7 @@
         <variable
             name="user"
             type="com.ygs.netronic.models.ui.UserDetailsModel" />
+
         <variable
             name="viewModel"
             type="com.ygs.netronic.viewmodels.UserDetailsFragmentViewModel" />
@@ -15,59 +16,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:src="@{user.pictureUrl}" />
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{user.fullName}" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_270"
+                    android:layout_margin="16dp"
+                    android:layout_weight="0.6"
+                    android:imgSrc="@{user.pictureUrl}" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/age + user.age}" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{user.fullName}" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/gender + user.gender}" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/age + user.age}" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/email + user.email}" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/gender + user.gender}" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/country + user.country}" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/email + user.email}" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@{@string/city + user.city}" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/country + user.country}" />
 
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text = "@{@string/street + user.street}"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/city + user.city}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@{@string/street + user.street}" />
+            </LinearLayout>
+        </ScrollView>
 
         <FrameLayout
             android:id="@+id/layout_progress"

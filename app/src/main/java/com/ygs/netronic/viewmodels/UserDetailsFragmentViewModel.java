@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel;
 
 public class UserDetailsFragmentViewModel extends ViewModel {
     private UserDetailsRepository mRepository;
-    public ObservableInt loading;
+    final public ObservableInt loading = new ObservableInt();
 
 
     public UserDetailsFragmentViewModel(UserDetailsRepository repository) {

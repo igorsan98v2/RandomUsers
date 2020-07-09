@@ -6,35 +6,24 @@ import com.ygs.netronic.R;
 import com.ygs.netronic.annotations.GeneralString;
 import com.ygs.netronic.fragments.UserDetailsFragment;
 
-import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 public class UserDetailsActivity extends BaseActivity {
     private long mUserId;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        enterDataToFields(savedInstanceState);
+        restoreState(savedInstanceState);
         setContentView(R.layout.activity_random_users);
-        replaceFragment(R.id.container, UserDetailsFragment.createInstance(mUserId),null);
+        replaceFragment(R.id.container, UserDetailsFragment.createInstance(mUserId), null);
     }
 
-
-
-    protected void replaceFragment(@IdRes int containerViewId,
-                                   @NonNull Fragment fragment,
-                                   @Nullable String tag) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(containerViewId, fragment, tag)
-                .commit();
-    }
 
 
     public void enterDataToFields(@NonNull Bundle args) {
-            mUserId = args.getLong(GeneralString.EXTRA_USER_ID);
+        mUserId = args.getLong(GeneralString.EXTRA_USER_ID);
     }
 
     public void enterDataToArgs(@NonNull Bundle args) {

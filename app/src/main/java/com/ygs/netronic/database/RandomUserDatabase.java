@@ -24,7 +24,7 @@ public abstract class RandomUserDatabase extends AppDatabase {
     private static volatile RandomUserDatabase instance;
     
     @NonNull
-    public static RandomUserDatabase getInstance(Context context) {
+    public static synchronized RandomUserDatabase getInstance(Context context) {
         RandomUserDatabase localInstance = instance;
         if (localInstance == null) {
             synchronized (RandomUserDatabase.class) {

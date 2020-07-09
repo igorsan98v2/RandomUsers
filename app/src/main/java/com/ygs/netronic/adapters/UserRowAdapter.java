@@ -24,6 +24,7 @@ public class UserRowAdapter extends RecyclerView.Adapter<UserRowAdapter.AdapterV
             @NonNull List<UserRowModel> dataSource,
             @NonNull OnClickListener<UserRowModel> onClickListener) {
         mDataSource = dataSource;
+        mOnClickListener = onClickListener;
     }
 
 

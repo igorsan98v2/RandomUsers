@@ -26,6 +26,7 @@ public class UserDetailsSample implements UserDetailsSampleMapper {
                 .setAge(age)
                 .setEmail(email)
                 .setCountry(country)
+                .setCity(city)
                 .setStreet(streetName + " " + streetNumber)
                 .setPicture(picture)
                 .create();

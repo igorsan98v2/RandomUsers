@@ -42,7 +42,7 @@ public abstract class UserDao extends EntityDao<User> {
             "Location.country as country, " +
             "Location.city as city, " +
             "Location.streetName as streetName, " +
-            "Location.streetName as streetNumber " +
+            "Location.streetNumber as streetNumber " +
             "FROM User " +
             "LEFT JOIN PictureUrl " +
             "ON User.id = PictureUrl.userId " +

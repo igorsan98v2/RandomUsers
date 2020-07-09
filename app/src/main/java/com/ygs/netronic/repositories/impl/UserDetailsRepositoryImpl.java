@@ -26,21 +26,7 @@ public final class UserDetailsRepositoryImpl implements UserDetailsRepository {
                 .map(UserDetailsSample::mapToUserDetailsModel)
                 .doOnSuccess(userDetailsModel -> mModel.postValue(userDetailsModel))
                 .subscribeOn(Schedulers.io())
-                .subscribeWith(new DisposableSingleObserver<UserDetailsModel>() {
-                    @Override
-                    public void onStart() {
-                    }
-
-                    @Override
-                    public void onError(Throwable error) {
-                        error.printStackTrace();
-                    }
-
-                    @Override
-                    public void onSuccess(UserDetailsModel model) {
-
-                    }
-                }).dispose();
+                .subscribe();
 
 
         return mModel;

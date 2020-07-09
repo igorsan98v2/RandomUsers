@@ -74,9 +74,9 @@ public class UserDetailsModel extends BaseObservable {
         return email;
     }
 
-    @BindingAdapter("android:src")
+    @BindingAdapter("android:imgSrc")
     public static void imageLoader(ImageView imageView, String url) {
-        Picasso.get().load(url).placeholder(R.drawable.unloaded_image).into(imageView);
+        Picasso.get().load(url).placeholder(R.drawable.unloaded_image).resizeDimen(R.dimen.dp_270, R.dimen.dp_270).centerInside().into(imageView);
     }
 
     public static class Builder {
